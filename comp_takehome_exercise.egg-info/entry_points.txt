@@ -1,0 +1,2 @@
+[console_scripts]
+comp-calendar = io_comp.app:main

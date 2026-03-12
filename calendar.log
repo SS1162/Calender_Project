@@ -1,0 +1,10 @@
+2026-03-12 18:25:03,121  WARNING   io_comp.service - No overlapping working window for ['Alice', 'Jack', 'Bob'] – returning no slots.
+2026-03-12 18:25:12,022  ERROR     io_comp.ai_advisor - Groq API call failed: Connection error.
+2026-03-12 18:55:00,705  WARNING   io_comp.service - No overlapping working window for ['Alice', 'Jack', 'Bob'] – returning no slots.
+2026-03-12 18:55:05,378  ERROR     io_comp.ai_advisor - Groq API call failed: Connection error.
+2026-03-12 18:57:57,912  WARNING   io_comp.service - No overlapping working window for ['Alice', 'Jack', 'Bob'] – returning no slots.
+2026-03-12 19:00:27,589  WARNING   io_comp.service - No overlapping working window for ['Alice', 'Jack', 'Bob'] – returning no slots.
+2026-03-12 19:00:31,895  ERROR     io_comp.ai_advisor - Groq API call failed: Connection error.
+2026-03-12 19:05:03,870  WARNING   io_comp.service - No overlapping working window for ['Alice', 'Jack', 'Bob'] – returning no slots.
+2026-03-12 19:05:07,877  ERROR     io_comp.ai_advisor - Groq API call failed: Connection error.
+2026-03-12 19:20:26,419  WARNING   io_comp.service - No overlapping working window for ['Alice', 'Jack', 'Bob'] – returning no slots.

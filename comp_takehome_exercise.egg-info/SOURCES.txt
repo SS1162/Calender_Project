@@ -1,0 +1,17 @@
+README.md
+setup.py
+comp_takehome_exercise.egg-info/PKG-INFO
+comp_takehome_exercise.egg-info/SOURCES.txt
+comp_takehome_exercise.egg-info/dependency_links.txt
+comp_takehome_exercise.egg-info/entry_points.txt
+comp_takehome_exercise.egg-info/requires.txt
+comp_takehome_exercise.egg-info/top_level.txt
+io_comp/__init__.py
+io_comp/ai_advisor.py
+io_comp/app.py
+io_comp/csv_repository.py
+io_comp/models.py
+io_comp/repository.py
+io_comp/service.py
+tests/__init__.py
+tests/test_app.py
