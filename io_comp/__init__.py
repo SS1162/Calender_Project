@@ -12,17 +12,20 @@ For wiring and execution, see ``app.py`` (composition root).
 """
 
 from io_comp.csv_repository import CSVCalendarRepository
+from io_comp.exceptions import CalendarFileNotFoundError, InvalidEventError
 from io_comp.models import Event, SweepEvent
 from io_comp.repository_interface import ICalendarRepository
 from io_comp.service import CalendarService
 from io_comp.service_interface import ICalendarService
 
 __all__ = [
+    "CalendarFileNotFoundError",
     "CalendarService",
     "CSVCalendarRepository",
     "Event",
     "ICalendarRepository",
     "ICalendarService",
+    "InvalidEventError",
     "SweepEvent",
 ]
 

@@ -18,6 +18,7 @@ import logging
 from datetime import date, datetime, time, timezone
 from typing import Any, Dict, List
 
+from io_comp.exceptions import CalendarFileNotFoundError, InvalidEventError
 from io_comp.models import Event
 from io_comp.repository_interface import ICalendarRepository
 
@@ -27,7 +28,7 @@ logger = logging.getLogger(__name__)
 _HOST_TZ = datetime.now(timezone.utc).astimezone().tzinfo
 
 
-class CSVCalendarRepository(ICalendarRepository):
+class CSVCalendarRepository:
     """Loads calendar :class:`Event` objects from a CSV file.
 
     Each person's times are normalised to UTC using **their own timezone**
@@ -109,10 +110,10 @@ class CSVCalendarRepository(ICalendarRepository):
                         )
                         self._events.append(event)
                     except ValueError as exc:
-                        logger.error(
-                            "Cannot parse time values on row %d of '%s': %s",
-                            line_num, filepath, exc,
-                        )
+                        err = InvalidEventError(str(exc), line_num=line_num, filepath=filepath)
+                        logger.error(str(err))
+                        raise err from exc
         except FileNotFoundError:
-            logger.error("Calendar file not found: '%s'.", filepath)
-            raise
+            err = CalendarFileNotFoundError(filepath)
+            logger.error(str(err))
+            raise err

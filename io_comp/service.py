@@ -22,14 +22,11 @@ import logging
 from datetime import date, datetime, time, timedelta, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
+from io_comp.config import WORKING_END, WORKING_START
 from io_comp.models import Event, SweepEvent
 from io_comp.repository_interface import ICalendarRepository
 
 logger = logging.getLogger(__name__)
-
-# Working-day limits in wall-clock time; applied per person in their own timezone.
-_WORKING_START = (7, 0)
-_WORKING_END   = (19, 0)
 
 # Host local tz – fixed-offset snapshot adequate for single-day scheduling.
 _HOST_TZ = datetime.now(timezone.utc).astimezone().tzinfo
@@ -128,8 +125,8 @@ class CalendarService:
         for person in person_list:
             tz = tz_map.get(person, self._output_tz)
             working_windows.append((
-                _person_to_utc(*_WORKING_START, tz),
-                _person_to_utc(*_WORKING_END,   tz),
+                _person_to_utc(*WORKING_START, tz),
+                _person_to_utc(*WORKING_END,   tz),
             ))
 
         # ── Step 2: intersection = [latest start, earliest end] ──────────

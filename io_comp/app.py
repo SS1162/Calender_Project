@@ -20,6 +20,7 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from io_comp import CSVCalendarRepository, CalendarService
 from io_comp.ai_advisor import suggest_meeting_to_move
+from io_comp.config import MIN_SLOT_MINUTES
 from io_comp.repository_interface import ICalendarRepository
 from io_comp.service_interface import ICalendarService
 
@@ -36,7 +37,7 @@ logger = logging.getLogger(__name__)
 
 # Output timezone: slots are printed in the caller's local time.
 _OUTPUT_TZ = datetime.now(timezone.utc).astimezone().tzinfo
-_AI_THRESHOLD = timedelta(minutes=30)
+_AI_THRESHOLD = timedelta(minutes=MIN_SLOT_MINUTES)
 
 
 def _parse_persons(raw: str) -> Tuple[List[str], Dict[str, object]]:
@@ -54,8 +55,7 @@ def _parse_persons(raw: str) -> Tuple[List[str], Dict[str, object]]:
             try:
                 tz_map[name] = ZoneInfo(tz_str)
             except (ZoneInfoNotFoundError, KeyError):
-                print(f"  [!] Unknown timezone '{tz_str}' for {name} – using local tz.")
-                logger.warning(f"Unknown timezone '{tz_str}' for {name} – using local tz.")
+                logger.warning("Unknown timezone '%s' for %s – using local tz.", tz_str, name)
                 tz_map[name] = _OUTPUT_TZ
         else:
             name = entry

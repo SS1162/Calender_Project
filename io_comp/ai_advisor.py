@@ -15,6 +15,7 @@ import os
 from pathlib import Path
 from typing import List
 
+from io_comp.config import MIN_SLOT_MINUTES
 from io_comp.models import Event
 
 # Load .env from the project root (three levels up from this file:
@@ -28,7 +29,6 @@ except ImportError:
 
 logger = logging.getLogger(__name__)
 
-_MIN_SLOT_MINUTES = 30
 _GROQ_MODEL = "llama-3.3-70b-versatile"
 
 
@@ -127,7 +127,7 @@ between 07:00 and 19:00 for all attendees today.
         suggestion = response.choices[0].message.content.strip()
         divider = "-" * 62
         return (
-            f"\n[AI] No {_MIN_SLOT_MINUTES}-minute slot found."
+            f"\n[AI] No {MIN_SLOT_MINUTES}-minute slot found."
             f"  Here is what the AI recommends:\n"
             f"{divider}\n"
             f"{suggestion}\n"
